@@ -13,6 +13,8 @@ import cv2
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--image", type=str,
                 help="path to input image")
+ap.add_argument("-o", "--output", type=str,
+                help="path to output image")
 ap.add_argument("-east", "--east", type=str,
                 help="path to input EAST text detector")
 ap.add_argument("-c", "--min-confidence", type=float, default=0.5,
@@ -130,5 +132,6 @@ for (startX, startY, endX, endY) in boxes:
     cv2.rectangle(orig, (startX, startY), (endX, endY), (0, 255, 0), 2)
 
 # show the output image
+cv2.imwrite(args["output"], orig)
 cv2.imshow("Text Detection", orig)
 cv2.waitKey(0)
